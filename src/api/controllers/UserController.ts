@@ -7,7 +7,7 @@ export class UserController extends IUser {
     static async getAll(req: Request, res: Response): Promise<void> {
         const data = await models.Users.findAll({
             attributes: [
-                'Id',
+                'id',
                 'FirstName',
                 'SecondName',
                 'MiddleName',
@@ -21,7 +21,7 @@ export class UserController extends IUser {
 static async getByID(req: Request, res: Response): Promise<void> {
         const data = await models.Users.findByPk(req.params.id, {
             attributes: [
-                'Id',
+                'id',
                 'FirstName',
                 'SecondName',
                 'MiddleName',
@@ -43,11 +43,12 @@ static async getByID(req: Request, res: Response): Promise<void> {
 
         models.Users.create({
             FirstName: req.body.FirstName,
-            LastName: req.body.LastName,
+            SecondName: req.body.SecondName,
             MiddleName: req.body.MiddleName,
             DateOfBirth: req.body.DateOfBirth,
             Adress: req.body.Adress,
-            ProfessionName:req.body.ProfessionName
+            ProfessionName:req.body.ProfessionName,
+            PassportId: req.body.PassportId
             
         })
             .then((data, ) => {
@@ -88,11 +89,11 @@ static async getByID(req: Request, res: Response): Promise<void> {
         models.Users.update({
             FirstName: req.body.FirstName || oldUser?.FirstName,
             MiddleName: req.body.MiddleName || oldUser?.MiddleName,
-            LastName: req.body.LastName || oldUser?.LastName,
+            SecondName: req.body.SecondName || oldUser?.SecondName,
             Adress: req.body.Adress || oldUser?.Adress,
             DateOfBirth: req.body.DateOfBirth || oldUser?.DateOfBirth,
             ProfessionName:req.body.ProfessionName || oldUser?.ProfessionName,
-        }, {where: {Id: req.params.id}})
+        }, {where: {id: req.params.id}})
             .then((data) => {
                 if (!data)
                     res.status(500).send({
@@ -149,9 +150,9 @@ static async getByID(req: Request, res: Response): Promise<void> {
         }
 
 
-        models.Users.update({
+        models.Authorization.update({
             Password: req.body.password
-        }, {where: {id: req.params.id}})
+        }, {where: {UserId: req.params.id}})
             .then((data) => {
                 if (!data)
                     res.status(500).send({
