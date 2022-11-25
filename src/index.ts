@@ -25,7 +25,7 @@ routes.use(defaultRoute);
 app.use('/api', routes)
 
 // auth endpoint
-// app.post('/auth', UserController.auth);
+app.post('/auth', UserController.auth);
 
 // init server
 app.listen(port, () => {
