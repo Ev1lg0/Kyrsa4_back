@@ -4,17 +4,17 @@ import type { Curs, CursId } from './Curs';
 
 export interface DirectionAttributes {
   id: number;
-  DirectionName?: string;
+  DirectionName: string;
 }
 
 export type DirectionPk = "id";
 export type DirectionId = Direction[DirectionPk];
-export type DirectionOptionalAttributes = "id" | "DirectionName";
+export type DirectionOptionalAttributes = "id";
 export type DirectionCreationAttributes = Optional<DirectionAttributes, DirectionOptionalAttributes>;
 
 export class Direction extends Model<DirectionAttributes, DirectionCreationAttributes> implements DirectionAttributes {
   id!: number;
-  DirectionName?: string;
+  DirectionName!: string;
 
   // Direction hasMany Curs via Direction
   Curs!: Curs[];
@@ -38,8 +38,8 @@ export class Direction extends Model<DirectionAttributes, DirectionCreationAttri
       primaryKey: true
     },
     DirectionName: {
-      type: DataTypes.STRING(45),
-      allowNull: true
+      type: DataTypes.STRING(60),
+      allowNull: false
     }
   }, {
     sequelize,

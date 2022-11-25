@@ -1,6 +1,4 @@
 import type { Sequelize } from "sequelize";
-import { Authorization as _Authorization } from "./Authorization";
-import type { AuthorizationAttributes, AuthorizationCreationAttributes } from "./Authorization";
 import { Curs as _Curs } from "./Curs";
 import type { CursAttributes, CursCreationAttributes } from "./Curs";
 import { Direction as _Direction } from "./Direction";
@@ -17,7 +15,6 @@ import { Users as _Users } from "./Users";
 import type { UsersAttributes, UsersCreationAttributes } from "./Users";
 
 export {
-  _Authorization as Authorization,
   _Curs as Curs,
   _Direction as Direction,
   _Profession as Profession,
@@ -28,8 +25,6 @@ export {
 };
 
 export type {
-  AuthorizationAttributes,
-  AuthorizationCreationAttributes,
   CursAttributes,
   CursCreationAttributes,
   DirectionAttributes,
@@ -47,7 +42,6 @@ export type {
 };
 
 export function initModels(sequelize: Sequelize) {
-  const Authorization = _Authorization.initModel(sequelize);
   const Curs = _Curs.initModel(sequelize);
   const Direction = _Direction.initModel(sequelize);
   const Profession = _Profession.initModel(sequelize);
@@ -64,15 +58,12 @@ export function initModels(sequelize: Sequelize) {
   Direction.hasMany(Curs, { as: "Curs", foreignKey: "Direction"});
   Users.belongsTo(Profession, { as: "ProfessionName_Profession", foreignKey: "ProfessionName"});
   Profession.hasMany(Users, { as: "Users", foreignKey: "ProfessionName"});
-  Authorization.belongsTo(Role, { as: "Role_Role", foreignKey: "Role"});
-  Role.hasMany(Authorization, { as: "Authorizations", foreignKey: "Role"});
-  Authorization.belongsTo(Users, { as: "User", foreignKey: "UserId"});
-  Users.hasOne(Authorization, { as: "Authorization", foreignKey: "UserId"});
+  Users.belongsTo(Role, { as: "id_Role", foreignKey: "id"});
+  Role.hasOne(Users, { as: "User", foreignKey: "id"});
   Results.belongsTo(Users, { as: "User", foreignKey: "UserId"});
   Users.hasMany(Results, { as: "Results", foreignKey: "UserId"});
 
   return {
-    Authorization: Authorization,
     Curs: Curs,
     Direction: Direction,
     Profession: Profession,

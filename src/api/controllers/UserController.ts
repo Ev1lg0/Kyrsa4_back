@@ -13,8 +13,10 @@ export class UserController extends IUser {
                 'MiddleName',
                 'Adress',
                 'DateOfBirth',
-                'ProfessionName'
-            ]
+                'ProfessionName',
+                'Role'
+            ],
+            include: [{ all: true }]
         });
         res.send(data);
     }
@@ -27,8 +29,10 @@ static async getByID(req: Request, res: Response): Promise<void> {
                 'MiddleName',
                 'Adress',
                 'DateOfBirth',
-                'ProfessionName'
-            ]
+                'ProfessionName',
+                'Role'
+            ],
+            include: [{ all: true }]
         });
         res.send(data);
     }
@@ -39,8 +43,6 @@ static async getByID(req: Request, res: Response): Promise<void> {
                 message: "Content can not be empty!"
             });
         }
-
-
         models.Users.create({
             FirstName: req.body.FirstName,
             SecondName: req.body.SecondName,
@@ -48,8 +50,11 @@ static async getByID(req: Request, res: Response): Promise<void> {
             DateOfBirth: req.body.DateOfBirth,
             Adress: req.body.Adress,
             ProfessionName:req.body.ProfessionName,
-            PassportId: req.body.PassportId
-            
+            PassportId: req.body.PassportId,
+            Login: req.body.Login,
+            Password: req.body.Password,
+            Role: req.body.Role
+
         })
             .then((data, ) => {
                 if (!data)
@@ -57,23 +62,9 @@ static async getByID(req: Request, res: Response): Promise<void> {
                         error:
                             "Some error occurred while creating."
                     });
-                else {
-                    models.Authorization.create({
-                        Login: req.body.Login,
-                        Password: req.body.Password,
-                        Role: req.body.Role, 
-                        UserId: data.id
-                    }).then((data, ) => {
-                        if (!data){
-                        res.status(500).send({
-                            error:
-                                "Some error occurred while creating."
-                        });}
                         else {
                             res.status(200).send(data)
                         }
-                    })
-                };
             });
     }
 
@@ -123,11 +114,10 @@ static async getByID(req: Request, res: Response): Promise<void> {
                 message: "Content can not be empty!"
             });
         }
-        const data = await models.Authorization.findOne({
+        const data = await models.Users.findOne({
             attributes: [
-                'UserId',
+                'id',
                 'Password',
-
             ],
             where: {Login: req.body.Login}
         });
@@ -150,9 +140,9 @@ static async getByID(req: Request, res: Response): Promise<void> {
         }
 
 
-        models.Authorization.update({
+        models.Users.update({
             Password: req.body.password
-        }, {where: {UserId: req.params.id}})
+        }, {where: {id: req.params.id}})
             .then((data) => {
                 if (!data)
                     res.status(500).send({

@@ -1,6 +1,6 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
-import type { Authorization, AuthorizationId } from './Authorization';
+import type { Users, UsersCreationAttributes, UsersId } from './Users';
 
 export interface RoleAttributes {
   id: number;
@@ -16,18 +16,11 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
   id!: number;
   RoleName!: string;
 
-  // Role hasMany Authorization via Role
-  Authorizations!: Authorization[];
-  getAuthorizations!: Sequelize.HasManyGetAssociationsMixin<Authorization>;
-  setAuthorizations!: Sequelize.HasManySetAssociationsMixin<Authorization, AuthorizationId>;
-  addAuthorization!: Sequelize.HasManyAddAssociationMixin<Authorization, AuthorizationId>;
-  addAuthorizations!: Sequelize.HasManyAddAssociationsMixin<Authorization, AuthorizationId>;
-  createAuthorization!: Sequelize.HasManyCreateAssociationMixin<Authorization>;
-  removeAuthorization!: Sequelize.HasManyRemoveAssociationMixin<Authorization, AuthorizationId>;
-  removeAuthorizations!: Sequelize.HasManyRemoveAssociationsMixin<Authorization, AuthorizationId>;
-  hasAuthorization!: Sequelize.HasManyHasAssociationMixin<Authorization, AuthorizationId>;
-  hasAuthorizations!: Sequelize.HasManyHasAssociationsMixin<Authorization, AuthorizationId>;
-  countAuthorizations!: Sequelize.HasManyCountAssociationsMixin;
+  // Role hasOne Users via id
+  User!: Users;
+  getUser!: Sequelize.HasOneGetAssociationMixin<Users>;
+  setUser!: Sequelize.HasOneSetAssociationMixin<Users, UsersId>;
+  createUser!: Sequelize.HasOneCreateAssociationMixin<Users>;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof Role {
     return Role.init({

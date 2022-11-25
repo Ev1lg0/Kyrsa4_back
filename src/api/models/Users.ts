@@ -1,8 +1,8 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
-import type { Authorization, AuthorizationCreationAttributes, AuthorizationId } from './Authorization';
 import type { Profession, ProfessionId } from './Profession';
 import type { Results, ResultsId } from './Results';
+import type { Role, RoleId } from './Role';
 
 export interface UsersAttributes {
   id: number;
@@ -13,6 +13,9 @@ export interface UsersAttributes {
   PassportId: string;
   Adress: string;
   ProfessionName: number;
+  Login: string;
+  Password: string;
+  Role: number;
 }
 
 export type UsersPk = "id";
@@ -29,17 +32,20 @@ export class Users extends Model<UsersAttributes, UsersCreationAttributes> imple
   PassportId!: string;
   Adress!: string;
   ProfessionName!: number;
+  Login!: string;
+  Password!: string;
+  Role!: number;
 
   // Users belongsTo Profession via ProfessionName
   ProfessionName_Profession!: Profession;
   getProfessionName_Profession!: Sequelize.BelongsToGetAssociationMixin<Profession>;
   setProfessionName_Profession!: Sequelize.BelongsToSetAssociationMixin<Profession, ProfessionId>;
   createProfessionName_Profession!: Sequelize.BelongsToCreateAssociationMixin<Profession>;
-  // Users hasOne Authorization via UserId
-  Authorization!: Authorization;
-  getAuthorization!: Sequelize.HasOneGetAssociationMixin<Authorization>;
-  setAuthorization!: Sequelize.HasOneSetAssociationMixin<Authorization, AuthorizationId>;
-  createAuthorization!: Sequelize.HasOneCreateAssociationMixin<Authorization>;
+  // Users belongsTo Role via id
+  id_Role!: Role;
+  getId_Role!: Sequelize.BelongsToGetAssociationMixin<Role>;
+  setId_Role!: Sequelize.BelongsToSetAssociationMixin<Role, RoleId>;
+  createId_Role!: Sequelize.BelongsToCreateAssociationMixin<Role>;
   // Users hasMany Results via UserId
   Results!: Results[];
   getResults!: Sequelize.HasManyGetAssociationsMixin<Results>;
@@ -59,7 +65,11 @@ export class Users extends Model<UsersAttributes, UsersCreationAttributes> imple
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      references: {
+        model: 'Role',
+        key: 'id'
+      }
     },
     FirstName: {
       type: DataTypes.STRING(45),
@@ -92,6 +102,18 @@ export class Users extends Model<UsersAttributes, UsersCreationAttributes> imple
         model: 'Profession',
         key: 'id'
       }
+    },
+    Login: {
+      type: DataTypes.STRING(256),
+      allowNull: false
+    },
+    Password: {
+      type: DataTypes.STRING(256),
+      allowNull: false
+    },
+    Role: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,
@@ -111,6 +133,13 @@ export class Users extends Model<UsersAttributes, UsersCreationAttributes> imple
         using: "BTREE",
         fields: [
           { name: "ProfessionName" },
+        ]
+      },
+      {
+        name: "FK_User_Role_idx",
+        using: "BTREE",
+        fields: [
+          { name: "Role" },
         ]
       },
     ]

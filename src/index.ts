@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import body_parser from 'body-parser';
 
 import { defaultRoute } from './api/routes';
+import {UserController} from "./api/controllers/UserController";
 // import {UserController} from "./api/controllers/UserController";
 
 dotenv.config();
