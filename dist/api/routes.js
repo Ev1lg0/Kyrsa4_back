@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.defaultRoute = void 0;
+const express_1 = require("express");
+const UserRoute_1 = require("./routes/UserRoute");
+const TaskRoute_1 = require("./routes/TaskRoute");
+const ResultRoute_1 = require("./routes/ResultRoute");
+const ProfessionRoute_1 = require("./routes/ProfessionRoute");
+const RoleRoute_1 = require("./routes/RoleRoute");
+const DirectionRoute_1 = require("./routes/DirectionRoute");
+const CursRoute_1 = require("./routes/CursRoute");
+exports.defaultRoute = (0, express_1.Router)();
+exports.defaultRoute.get('/', (req, res) => {
+    res.send({ error: "invalid url" });
+});
+exports.defaultRoute.use('/users', UserRoute_1.UsersRoute);
+exports.defaultRoute.use('/tasks', TaskRoute_1.TaskRoute);
+exports.defaultRoute.use('/results', ResultRoute_1.ResultsRoute);
+exports.defaultRoute.use('/profession', ProfessionRoute_1.ProfessionRoute);
+exports.defaultRoute.use('/role', RoleRoute_1.RoleRoute);
+exports.defaultRoute.use('/direction', DirectionRoute_1.DirectionRoute);
+exports.defaultRoute.use('/curs', CursRoute_1.CursRoute);

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/api/routes.ts"],
+  "sourcesContent": ["import { Router } from 'express';\r\nimport {UsersRoute} from \"./routes/UserRoute\";\r\nimport {TaskRoute} from \"./routes/TaskRoute\";\r\nimport { ResultsRoute } from './routes/ResultRoute';\r\nimport { ProfessionRoute } from './routes/ProfessionRoute';\r\nimport { RoleRoute } from './routes/RoleRoute';\r\nimport { DirectionRoute } from './routes/DirectionRoute';\r\nimport { CursRoute } from './routes/CursRoute';\r\nexport const defaultRoute = Router();\r\n\r\ndefaultRoute.get('/', (req, res) => {\r\n    res.send({error: \"invalid url\"});\r\n});\r\n\r\ndefaultRoute.use('/users', UsersRoute);\r\ndefaultRoute.use('/tasks', TaskRoute);\r\ndefaultRoute.use('/results', ResultsRoute);\r\ndefaultRoute.use('/profession', ProfessionRoute)\r\ndefaultRoute.use('/role', RoleRoute)\r\ndefaultRoute.use('/direction', DirectionRoute)\r\ndefaultRoute.use('/curs', CursRoute)"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,qBAAuB;AACvB,uBAAyB;AACzB,uBAAwB;AACxB,yBAA6B;AAC7B,6BAAgC;AAChC,uBAA0B;AAC1B,4BAA+B;AAC/B,uBAA0B;AACnB,MAAM,eAAe;AAE5B,aAAa,IAAI,KAAK,CAAC,KAAK,QAAQ;AAChC,MAAI,KAAK,EAAC,OAAO;AAAA;AAGrB,aAAa,IAAI,UAAU;AAC3B,aAAa,IAAI,UAAU;AAC3B,aAAa,IAAI,YAAY;AAC7B,aAAa,IAAI,eAAe;AAChC,aAAa,IAAI,SAAS;AAC1B,aAAa,IAAI,cAAc;AAC/B,aAAa,IAAI,SAAS;",
+  "names": []
+}

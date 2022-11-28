@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/api/routes/ResultRoute.ts"],
+  "sourcesContent": ["import { Router } from 'express';\r\nimport { ResultsController as Controller} from '../controllers/ResultController';\r\n\r\nexport const ResultsRoute= Router();\r\n\r\nResultsRoute.get('/', Controller.getAll);\r\nResultsRoute.get('/:id', Controller.getByID);\r\nResultsRoute.post('/', Controller.create);\r\nResultsRoute.put('/:id', Controller.update);\r\nResultsRoute.delete('/:id', Controller.delete);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,qBAAuB;AACvB,8BAA+C;AAExC,MAAM,eAAc;AAE3B,aAAa,IAAI,KAAK,0CAAW;AACjC,aAAa,IAAI,QAAQ,0CAAW;AACpC,aAAa,KAAK,KAAK,0CAAW;AAClC,aAAa,IAAI,QAAQ,0CAAW;AACpC,aAAa,OAAO,QAAQ,0CAAW;",
+  "names": []
+}

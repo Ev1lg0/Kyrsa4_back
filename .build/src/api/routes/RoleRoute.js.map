@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/api/routes/RoleRoute.ts"],
+  "sourcesContent": ["import { Router } from 'express';\r\nimport { RoleController as Controller} from '../controllers/RoleController';\r\n\r\nexport const RoleRoute= Router();\r\n\r\nRoleRoute.get('/', Controller.getAll);\r\nRoleRoute.get('/:id', Controller.getByID);\r\nRoleRoute.post('/', Controller.create);\r\nRoleRoute.put('/:id', Controller.update);\r\nRoleRoute.delete('/:id', Controller.delete);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,qBAAuB;AACvB,4BAA4C;AAErC,MAAM,YAAW;AAExB,UAAU,IAAI,KAAK,qCAAW;AAC9B,UAAU,IAAI,QAAQ,qCAAW;AACjC,UAAU,KAAK,KAAK,qCAAW;AAC/B,UAAU,IAAI,QAAQ,qCAAW;AACjC,UAAU,OAAO,QAAQ,qCAAW;",
+  "names": []
+}

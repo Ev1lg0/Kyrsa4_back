@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/api/routes/ProfessionRoute.ts"],
+  "sourcesContent": ["import { Router } from 'express';\r\nimport { ProfessionController as Controller} from '../controllers/ProfessionController';\r\n\r\nexport const ProfessionRoute= Router();\r\n\r\nProfessionRoute.get('/', Controller.getAll);\r\nProfessionRoute.get('/:id', Controller.getByID);\r\nProfessionRoute.post('/', Controller.create);\r\nProfessionRoute.put('/:id', Controller.update);\r\nProfessionRoute.delete('/:id', Controller.delete);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,qBAAuB;AACvB,kCAAkD;AAE3C,MAAM,kBAAiB;AAE9B,gBAAgB,IAAI,KAAK,iDAAW;AACpC,gBAAgB,IAAI,QAAQ,iDAAW;AACvC,gBAAgB,KAAK,KAAK,iDAAW;AACrC,gBAAgB,IAAI,QAAQ,iDAAW;AACvC,gBAAgB,OAAO,QAAQ,iDAAW;",
+  "names": []
+}

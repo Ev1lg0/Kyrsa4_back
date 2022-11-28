@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DirectionRoute = void 0;
+const express_1 = require("express");
+const DirectionController_1 = require("../controllers/DirectionController");
+exports.DirectionRoute = (0, express_1.Router)();
+exports.DirectionRoute.get('/', DirectionController_1.DirectionController.getAll);
+exports.DirectionRoute.get('/:id', DirectionController_1.DirectionController.getByID);
+exports.DirectionRoute.post('/', DirectionController_1.DirectionController.create);
+exports.DirectionRoute.put('/:id', DirectionController_1.DirectionController.update);
+exports.DirectionRoute.delete('/:id', DirectionController_1.DirectionController.delete);

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/interfaces/IUser.ts"],
+  "sourcesContent": ["import {IRest} from \"./IRest\";\r\nimport {Request, Response} from 'express';\r\n\r\nexport class IUser extends IRest {\r\n    public static changePassword: (req: Request, res: Response) => void\r\n    public static auth: (req: Request, res: Response) => void\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,mBAAoB;AAGb,oBAAoB,mBAAM;AAAA;",
+  "names": []
+}

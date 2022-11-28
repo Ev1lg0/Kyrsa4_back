@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/api/routes/TaskRoute.ts"],
+  "sourcesContent": ["import { Router } from 'express';\r\nimport { TaskController as Controller} from '../controllers/TaskController';\r\n\r\nexport const TaskRoute= Router();\r\n\r\nTaskRoute.get('/', Controller.getAll);\r\nTaskRoute.get('/:id', Controller.getByID);\r\nTaskRoute.post('/', Controller.create);\r\nTaskRoute.put('/:id', Controller.update);\r\nTaskRoute.delete('/:id', Controller.delete);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,qBAAuB;AACvB,4BAA4C;AAErC,MAAM,YAAW;AAExB,UAAU,IAAI,KAAK,qCAAW;AAC9B,UAAU,IAAI,QAAQ,qCAAW;AACjC,UAAU,KAAK,KAAK,qCAAW;AAC/B,UAAU,IAAI,QAAQ,qCAAW;AACjC,UAAU,OAAO,QAAQ,qCAAW;",
+  "names": []
+}

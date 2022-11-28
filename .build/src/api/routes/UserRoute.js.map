@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/api/routes/UserRoute.ts"],
+  "sourcesContent": ["import { Router } from 'express';\r\nimport { UserController as Controller} from '../controllers/UserController';\r\n\r\nexport const UsersRoute = Router();\r\n\r\nUsersRoute.get('/', Controller.getAll);\r\nUsersRoute.get('/:id', Controller.getByID);\r\nUsersRoute.post('/', Controller.create);\r\nUsersRoute.put('/:id', Controller.update);\r\nUsersRoute.put('/password/:id', Controller.changePassword);\r\nUsersRoute.delete('/:id', Controller.delete);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,qBAAuB;AACvB,4BAA4C;AAErC,MAAM,aAAa;AAE1B,WAAW,IAAI,KAAK,qCAAW;AAC/B,WAAW,IAAI,QAAQ,qCAAW;AAClC,WAAW,KAAK,KAAK,qCAAW;AAChC,WAAW,IAAI,QAAQ,qCAAW;AAClC,WAAW,IAAI,iBAAiB,qCAAW;AAC3C,WAAW,OAAO,QAAQ,qCAAW;",
+  "names": []
+}

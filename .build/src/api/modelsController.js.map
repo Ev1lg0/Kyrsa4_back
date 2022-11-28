@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/api/modelsController.ts"],
+  "sourcesContent": ["import dotenv from \"dotenv\";\r\nimport {Sequelize} from \"sequelize\";\r\nimport {initModels} from \"./models/init-models\";\r\n\r\ndotenv.config();\r\nconst sequelize = new Sequelize(`${process.env.CONNECTION_STRING}`);\r\nexport const models = initModels(sequelize);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,oBAAmB;AACnB,uBAAwB;AACxB,yBAAyB;AAEzB,sBAAO;AACP,MAAM,YAAY,IAAI,2BAAU,GAAG,QAAQ,IAAI;AACxC,MAAM,SAAS,mCAAW;",
+  "names": []
+}

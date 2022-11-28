@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/index.ts"],
+  "sourcesContent": ["import express, { Express } from 'express';\r\nimport dotenv from 'dotenv';\r\nimport body_parser from 'body-parser';\r\n\r\nimport { defaultRoute } from './api/routes';\r\nimport {UserController} from \"./api/controllers/UserController\";\r\n// import {UserController} from \"./api/controllers/UserController\";\r\n\r\ndotenv.config();\r\n\r\n// create server\r\nconst app: Express = express();\r\napp.use(body_parser.urlencoded({extended: true}))\r\napp.use(body_parser.json())\r\n\r\nconst port = process.env.PORT || 4000;\r\n\r\napp.get('/', (req, res) => {\r\n    res.send({error: \"invalid url\"});\r\n});\r\n\r\nconst routes = express.Router();\r\nroutes.use(defaultRoute);\r\n\r\n// main endpoint for api\r\napp.use('/api', routes)\r\n\r\n// auth endpoint\r\napp.post('/auth', UserController.auth);\r\n\r\n// init server\r\napp.listen(port, () => {\r\n    console.log(`\u26A1\uFE0F[server]: Server is running at http://localhost:${port}`);\r\n});\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA,qBAAiC;AACjC,oBAAmB;AACnB,yBAAwB;AAExB,oBAA6B;AAC7B,4BAA6B;AAG7B,sBAAO;AAGP,MAAM,MAAe;AACrB,IAAI,IAAI,2BAAY,WAAW,EAAC,UAAU;AAC1C,IAAI,IAAI,2BAAY;AAEpB,MAAM,OAAO,QAAQ,IAAI,QAAQ;AAEjC,IAAI,IAAI,KAAK,CAAC,KAAK,QAAQ;AACvB,MAAI,KAAK,EAAC,OAAO;AAAA;AAGrB,MAAM,SAAS,uBAAQ;AACvB,OAAO,IAAI;AAGX,IAAI,IAAI,QAAQ;AAGhB,IAAI,KAAK,SAAS,qCAAe;AAGjC,IAAI,OAAO,MAAM,MAAM;AACnB,UAAQ,IAAI,+DAAqD;AAAA;",
+  "names": []
+}

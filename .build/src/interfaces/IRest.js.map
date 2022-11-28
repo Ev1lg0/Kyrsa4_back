@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/interfaces/IRest.ts"],
+  "sourcesContent": ["import {Request, Response} from 'express';\r\n\r\nexport class IRest {\r\n    public static getAll: (req: Request, res: Response) => Promise<void>\r\n    public static getByID: (req: Request, res: Response) => Promise<void>\r\n    public static create: (req: Request, res: Response) => Promise<void>\r\n    public static update: (req: Request, res: Response) => Promise<void>\r\n    public static delete: (req: Request, res: Response) => Promise<void>\r\n}"],
+  "mappings": ";;;;;;;AAAA;AAAA;AAAA;AAEO,YAAY;AAAA;",
+  "names": []
+}
