@@ -15,30 +15,25 @@ const IRest_1 = require("../../interfaces/IRest");
 class ResultsController extends IRest_1.IRest {
     static getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [data,] = yield modelsController_1.sequelize.query(`SELECT Results.id, Results.Grade, Users.FirstName, Users.SecondName, Users.MiddleName, Direction.DirectionName
-FROM \`ISPr23-35_VinkAD_kyrsa4\`.Results, \`ISPr23-35_VinkAD_kyrsa4\`.Users, \`ISPr23-35_VinkAD_kyrsa4\`.Curs, \`ISPr23-35_VinkAD_kyrsa4\`.Direction
-WHERE Users.id=Results.UserId and Curs.id = Results.CursId and Direction.id = Curs.Direction;`);
-    console.log(data)
-          if (data[0]) {
-      res.status(200).send(data[0]);
-    }
-    else {
-      res.status(500);
-    }
+            const [data,] = yield modelsController_1.sequelize.query(`SELECT Results.id, Results.Grade, Users.FirstName, Users.SecondName, Users.MiddleName, Direction.DirectionName FROM \`ISPr23-35_VinkAD_kyrsa4\`.Results, \`ISPr23-35_VinkAD_kyrsa4\`.Users, \`ISPr23-35_VinkAD_kyrsa4\`.Curs, \`ISPr23-35_VinkAD_kyrsa4\`.Direction WHERE Users.id=Results.UserId and Curs.id = Results.CursId and Direction.id = Curs.Direction;`);
+            if (data) {
+                res.status(200).send(data);
+            }
+            else {
+                res.status(500);
+            }
             
         });
     }
     static getByID(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield modelsController_1.models.Results.findByPk(req.params.id, {
-                attributes: [
-                    'id',
-                    'CursId',
-                    'Grade'
-                ],
-              include: [{ all: true }]
-            });
-            res.send(data);
+            const [data,] = yield modelsController_1.sequelize.query(`SELECT Results.id, Results.Grade, Users.FirstName, Users.SecondName, Users.MiddleName, Direction.DirectionName FROM \`ISPr23-35_VinkAD_kyrsa4\`.Results, \`ISPr23-35_VinkAD_kyrsa4\`.Users, \`ISPr23-35_VinkAD_kyrsa4\`.Curs, \`ISPr23-35_VinkAD_kyrsa4\`.Direction WHERE Users.id=Results.UserId and Curs.id = Results.CursId and Direction.id = Curs.Direction AND Results.id=${req.params.id}`);
+            if (data) {
+                res.status(200).send(data[0]);
+            }
+            else {
+                res.status(500);
+            }
         });
     }
     static create(req, res) {
